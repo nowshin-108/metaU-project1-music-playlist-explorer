@@ -11,15 +11,98 @@
 </head>
 <body>
     <header>
-        <h1>Set up testing</h1>
+        <script src="https://kit.fontawesome.com/b64829c1ba.js" crossorigin="anonymous"></script>
+        <div class="header" id="myHeader">
+            <h1>Music Playlist Explorer</h1>
+        </div>
     </header>
 
-    <main> 
-        <!-- Your main content here -->
-    </main>
+    <div onclick="openModal({name: 'Summer Beats Festival', imageUrl: 'path/to/festival.jpg', dates: 'July 15-17', location: 'Downtown Park', lineup: ['Artist A', 'Artist B']})">
+        <main> 
+            <section class="playlist-cards">
+                <div class="playlist" id="playlist1">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+                <div class="playlist" id="playlist2">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+                <div class="playlist" id="playlist3">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+                <div class="playlist" id="playlist4">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+                <div class="playlist" id="playlist5">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+                <div class="playlist" id="playlist5">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+    
+                <div class="playlist" id="playlist5">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+                <div class="playlist" id="playlist5">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+    
+    
+                <div class="playlist" id="playlist5">
+                    <img src="./assets/img/playlist.png" alt="song">
+                    <h4>Playlist Title</h4>
+                    <p>Creator name</p>
+                    <p><i class="fa-solid fa-heart"></i> 5</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+
+    <div id="festivalModal" class="modal">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 id="festivalName"></h1>
+        <img id="festivalImage" src="" alt="Festival Image">
+        <p id="festivalDates"></p>
+        <p id="festivalLocation"></p>
+        <div id="artistLineup"></div>
+        </div>
+    </div>
 
     <footer>
-        <!-- Your footer content here -->
+        <div class="footer">
+        </div>
     </footer>
     <script src="data/data.js"></script>
     <script src="script.js"></script>
