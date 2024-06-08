@@ -5,50 +5,107 @@ var span = document.getElementsByClassName("close")[0];
 
 function createSongList(array) {
     const songsDiv = document.getElementById('songs');
-    // songsDiv.innerHTML = ''; 
+
+
     for (let innerIndex = 0; innerIndex < array.songs.length; innerIndex++) {
         let currentSong = array.songs[innerIndex];
         let individual_song = document.createElement("div");
         individual_song.classList.add('modal-song-container');
-        individual_song.innerHTML += `
-                <img id="cover_art" src="${currentSong.cover_art}" alt="blah"> <br> <br>
-                <div id="song-info">
-                    <p id="title">${currentSong.title}</p>
-                    <p id="artist">${currentSong.artist}</p>
-                    <p id="album">${currentSong.album}</p>
-                </div>
-                <div id="song-length">
-                    <br> <br>
-                    <p id="duration">${currentSong.duration}</p>
-                    <br> <br>
-                </div> 
-            `;
-        // append stuff above to grabbed playlist section
+        
+        // Create cover art element
+        let coverArt = document.createElement("img");
+        coverArt.id = "cover_art";
+        coverArt.src = currentSong.cover_art;
+        coverArt.alt = "blah";
+        individual_song.appendChild(coverArt);
+        
+        // Add br elements
+        let br1 = document.createElement("br");
+        let br2 = document.createElement("br");
+        individual_song.appendChild(br1);
+        individual_song.appendChild(br2);
+        
+        // Create song info element and its children
+        let songInfo = document.createElement("div");
+        songInfo.id = "song-info";
+        
+        let title = document.createElement("p");
+        title.id = "title";
+        title.textContent = currentSong.title;
+        songInfo.appendChild(title);
+        
+        let artist = document.createElement("p");
+        artist.id = "artist";
+        artist.textContent = currentSong.artist;
+        songInfo.appendChild(artist);
+        
+        let album = document.createElement("p");
+        album.id = "album";
+        album.textContent = currentSong.album;
+        songInfo.appendChild(album);
+        
+        individual_song.appendChild(songInfo);
+        
+        // Add br elements
+        let br3 = document.createElement("br");
+        let br4 = document.createElement("br");
+        individual_song.appendChild(br3);
+        individual_song.appendChild(br4);
+        
+        // Create song length element and its children
+        let songLength = document.createElement("div");
+        songLength.id = "song-length";
+        
+        let duration = document.createElement("p");
+        duration.id = "duration";
+        duration.textContent = currentSong.duration;
+        songLength.appendChild(duration);
+        
+        individual_song.appendChild(songLength);
+        
+        // Append individual_song to the modal content
         document.querySelector('.modal-content').appendChild(individual_song);
     }
+    
 }
 
 function openModal(array) {
-
-    // console.log(array);
-    // console.log(array.playlist_art);
-    
-    // console.log("This function ran");
-
-
     let individual_playlist = document.createElement("div");
     individual_playlist.classList.add('modal-head-container');
-    individual_playlist.innerHTML += `
-        <img id="playlist_art" src="${array.playlist_art}" alt="blah">
-        <div id="modal-header-info">
-            <h1 id="playlist_name">${array.playlist_name}</h1>
-            <h3 id="playlist_creator">${array.playlist_creator} </h3>
-        </div>
-        <button id = "shuffle-button">Shuffle</button>
-        `;
-    // append stuff above to grabbed playlist section
+    
+    // Create playlist art element
+    let playlistArt = document.createElement("img");
+    playlistArt.id = "playlist_art";
+    playlistArt.src = array.playlist_art;
+    playlistArt.alt = "blah";
+    individual_playlist.appendChild(playlistArt);
+
+    // Create modal header info element and its children
+    let modalHeaderInfo = document.createElement("div");
+    modalHeaderInfo.id = "modal-header-info";
+
+    let playlistName = document.createElement("h1");
+    playlistName.id = "playlist_name";
+    playlistName.textContent = array.playlist_name;
+    modalHeaderInfo.appendChild(playlistName);
+
+    let playlistCreator = document.createElement("h3");
+    playlistCreator.id = "playlist_creator";
+    playlistCreator.textContent = array.playlist_creator + " ";
+    modalHeaderInfo.appendChild(playlistCreator);
+
+    individual_playlist.appendChild(modalHeaderInfo);
+
+    // Create shuffle button element
+    let shuffleButton = document.createElement("button");
+    shuffleButton.id = "shuffle-button";
+    shuffleButton.textContent = "Shuffle";
+    individual_playlist.appendChild(shuffleButton);
+
+    // Append individual_playlist to the modal content
     document.querySelector('.modal-content').appendChild(individual_playlist);
-    console.log("playlist before shuffling:", array);
+
+    
     document.getElementById("shuffle-button").addEventListener("click", () => shuffleSongs(array));
 
     createSongList(array);
@@ -65,21 +122,71 @@ function populatePlaylists(data) {
         let clickmodalelement = document.createElement("div");
         clickmodalelement.classList.add("click-modal");
 
-        clickmodalelement.innerHTML =`
-            <img src="${currentPlaylist.playlist_art}" alt="song">
-            <h4>${currentPlaylist.playlist_name}</h4>
-            <p>${currentPlaylist.playlist_creator}</p>
-            <p><i class="fa-solid fa-heart" id="heartCount"></i> ${currentPlaylist.likeCount}</p>
-        `;
+        // Create img element
+        let playlistImage = document.createElement("img");
+        playlistImage.src = currentPlaylist.playlist_art;
+        playlistImage.alt = "song";
+        clickmodalelement.appendChild(playlistImage);
+
+        // Create playlistHeader div and its children
+        let playlistHeader = document.createElement("div");
+        playlistHeader.id = "playlistHeader";
+
+        let playlistName = document.createElement("h4");
+        playlistName.textContent = currentPlaylist.playlist_name;
+        playlistHeader.appendChild(playlistName);
+        clickmodalelement.appendChild(playlistHeader);
+
+        // Create creatorName p element
+        let creatorName = document.createElement("p");
+        creatorName.id = "creatorName";
+        creatorName.textContent = currentPlaylist.playlist_creator;
+        clickmodalelement.appendChild(creatorName);
+
+        // Create card-footer div and its children
+        let cardFooter = document.createElement("div");
+        cardFooter.id = "card-footer";
+
+        // Create playlist heart div and its children
+        let playlistHeart = document.createElement("div");
+        playlistHeart.id = `playlist-heart-${currentPlaylist.playlistID}`;
+
+        let heartIcon = document.createElement("i");
+        heartIcon.classList.add("fa-regular");
+        heartIcon.classList.add("fa-heart");
+        playlistHeart.appendChild(heartIcon);
+        cardFooter.appendChild(playlistHeart);
+
+        // Create likeCount p element
+        let likeCount = document.createElement("p");
+        likeCount.id = `likeCount-${currentPlaylist.playlistID}`;
+        likeCount.textContent = currentPlaylist.likeCount;
+        cardFooter.appendChild(likeCount);
+
+        // Create trash icon element
+        let trashIcon = document.createElement("i");
+        trashIcon.classList.add("fa", "fa-trash", "aria-hidden", "true");
+        trashIcon.id = "delete-icon";
+        cardFooter.appendChild(trashIcon);
+
+        clickmodalelement.appendChild(cardFooter);
 
         individual_playlist.appendChild(clickmodalelement);
 
-        clickmodalelement.addEventListener("click", () =>{
-            // console.log(currentPlaylist);
-            openModal(currentPlaylist);
-        })
+        heartIcon.addEventListener("click", () => {
+            event.stopPropagation();
+            likePlaylist(heartIcon, likeCount)
+        });
 
-        // append stuff above to grabbed playlist section
+        trashIcon.addEventListener("click", () => {
+            event.stopPropagation();
+            // likePlaylist(heartIcon, likeCount)
+        });
+
+        clickmodalelement.addEventListener("click", () => {
+            openModal(currentPlaylist);
+        });
+
         document.querySelector('.playlist-cards').appendChild(individual_playlist);
     }
 }
@@ -107,6 +214,49 @@ function shuffleSongs(playlist) {
     createSongList(playlist);
 }
 
+// function likePlaylist(playlist_array) {
+
+//     let heart = document.querySelector('#playlist-heart');
+//     let likeCount_initial = playlist_array.likeCount
+//     // Changing the heart to solid
+//     if (String(heart.classList).includes("fa-regular")) {
+//         // Change to solid if liked.
+//         heart.classList = ""
+//         heart.classList.add("fa-solid");
+//         heart.classList.add("fa-heart");
+
+//         likeCount_initial.innerText = String(Number(likeCount_initial.innerText) + 1);
+//     }
+//     else {
+//         // Change to outline if unliked.
+//         heart.classList = ""
+//         heart.classList.add("fa-regular");
+//         heart.classList.add("fa-heart");
+
+//         likeCount_initial.innerText = String(Number(likeCount_initial.innerText) - 1);
+//     }
+// }
+
+function likePlaylist(heart, likeCount) {
+    // Changing the heart to solid
+    if (String(heart.classList).includes("fa-regular")) {
+        // Change to solid if liked.
+        heart.classList = ""
+        heart.classList.add("fa-solid");
+        heart.classList.add("fa-heart");
+
+        likeCount.innerText = String(Number(likeCount.innerText) + 1);
+    }
+    else {
+        // Change to outline if unliked.
+        heart.classList = ""
+        heart.classList.add("fa-regular");
+        heart.classList.add("fa-heart");
+
+        likeCount.innerText = String(Number(likeCount.innerText) - 1);
+    }
+}
+
 
 span.onclick = function () {
 
@@ -131,4 +281,3 @@ window.onclick = function (event) {
 }
 
 populatePlaylists(data);
-// openModal(dummy);
