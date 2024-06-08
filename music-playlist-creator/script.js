@@ -112,12 +112,14 @@ function openModal(array) {
     modal.style.display = "block";
 }
 
+let displayedPlaylistCards = [];
 function populatePlaylists(data) {
     for (let index = 0; index < data.playlists.length; index++) {
         let currentPlaylist = data.playlists[index];
 
         let individual_playlist = document.createElement("div");
         individual_playlist.classList.add('playlist');
+        individual_playlist.id= `playlist-${currentPlaylist.playlistID}`;
 
         let clickmodalelement = document.createElement("div");
         clickmodalelement.classList.add("click-modal");
@@ -125,7 +127,7 @@ function populatePlaylists(data) {
         // Create img element
         let playlistImage = document.createElement("img");
         playlistImage.src = currentPlaylist.playlist_art;
-        playlistImage.alt = "song";
+        playlistImage.alt = "song"
         clickmodalelement.appendChild(playlistImage);
 
         // Create playlistHeader div and its children
@@ -173,14 +175,17 @@ function populatePlaylists(data) {
 
         individual_playlist.appendChild(clickmodalelement);
 
+        displayedPlaylistCards.push(individual_playlist);
+
         heartIcon.addEventListener("click", () => {
             event.stopPropagation();
             likePlaylist(heartIcon, likeCount)
         });
 
+        console.log(currentPlaylist);
         trashIcon.addEventListener("click", () => {
             event.stopPropagation();
-            // likePlaylist(heartIcon, likeCount)
+            deletePlaylist(currentPlaylist);
         });
 
         clickmodalelement.addEventListener("click", () => {
@@ -190,6 +195,7 @@ function populatePlaylists(data) {
         document.querySelector('.playlist-cards').appendChild(individual_playlist);
     }
 }
+
 
 function shuffleSongs(playlist) {
     console.log("This function ran");
@@ -214,28 +220,6 @@ function shuffleSongs(playlist) {
     createSongList(playlist);
 }
 
-// function likePlaylist(playlist_array) {
-
-//     let heart = document.querySelector('#playlist-heart');
-//     let likeCount_initial = playlist_array.likeCount
-//     // Changing the heart to solid
-//     if (String(heart.classList).includes("fa-regular")) {
-//         // Change to solid if liked.
-//         heart.classList = ""
-//         heart.classList.add("fa-solid");
-//         heart.classList.add("fa-heart");
-
-//         likeCount_initial.innerText = String(Number(likeCount_initial.innerText) + 1);
-//     }
-//     else {
-//         // Change to outline if unliked.
-//         heart.classList = ""
-//         heart.classList.add("fa-regular");
-//         heart.classList.add("fa-heart");
-
-//         likeCount_initial.innerText = String(Number(likeCount_initial.innerText) - 1);
-//     }
-// }
 
 function likePlaylist(heart, likeCount) {
     // Changing the heart to solid
@@ -254,6 +238,15 @@ function likePlaylist(heart, likeCount) {
         heart.classList.add("fa-heart");
 
         likeCount.innerText = String(Number(likeCount.innerText) - 1);
+    }
+}
+
+//strech features
+
+function deletePlaylist(playlist) {
+    let node = document.getElementById(`playlist-${playlist.playlistID}`);
+    if (node.parentNode) {
+        node.parentNode.removeChild(node);
     }
 }
 

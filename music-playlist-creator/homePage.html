@@ -6,47 +6,22 @@
 
     <title>Featured Playlists</title>
 
-    <!-- <link rel = "stylesheet" href = "style.css"> -->
     <link rel = "stylesheet" href = "homePage.css">
 </head>
 <body>
 
     <header>
-        <div class="header" id="myHeader">
-            <h1>Featured Playlist</h1>
+        <div class="header">
+            <div class="page-title"><h1>Featured Playlist</h1></div>
+            <a href="index.html" style="text-decoration: none;">
+                <button id="all">All</button>
+            </a>
         </div>
     </header>
     
         <main>
-            <a href = "index.html"><button id = "all-playlists-button">All Playlists</button></a>
-            <!-- Your main content here -->
             <div class = "feature-screen" id = "feature-screen">
                 <div class = "modal-content"></div>
-    
-                <!-- <div class="modalcontent">
-                    <div class="modalhead">
-                        <span class="modalpic">
-                            <img class="card-pic" src="${playlist.playlist_art}">
-                            <div id="song-title"><h1>${playlist.playlist_name}</h1></div>
-                            <div id="artiste">${playlist.playlist_creator}</div>
-                        </span>
-                        <div class="modaltitle">
-                            <div class="modalsong">
-                                <span class="songpic">
-                                    <img class="song-pic" src="${song.cover_art}">
-                                </span>
-                                <span class="songtitle">
-                                    <div id="song-title"><h2>${song.title}</h2></div>
-                                    <div id="artiste">${song.artist}</div>
-                                    <div id="album">${song.album}</div>
-                                </span>
-                                <span class="duration">
-                                    <div id="artiste">${song.duration}</div>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
     
             </div>
         </main>
@@ -56,6 +31,7 @@
 
     <footer>
         <div class="footer">
+            <p style="display: flex; justify-content: center;">@nowshin._.anber</p>
         </div>
     </footer>
     <script src = "data/data.js"></script>
