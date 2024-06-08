@@ -46,9 +46,7 @@ Estimated time spent: **50** hours spent in total
 
 ### Walkthrough Video
 
-
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/JkaxGoU" data-context="false" ><a href="//imgur.com/a/JkaxGoU"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-
+Youtube Link: https://youtu.be/Kh0GjgXPKBU?si=3lwCIXMLmnAccOzh
 
 ### Reflection
 
